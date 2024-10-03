@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PierPlacement : MonoBehaviour
 {
+
     [Header("Script reference")]
     public GameObject CurrencyScript;
 
@@ -29,9 +30,14 @@ public class PierPlacement : MonoBehaviour
         {
             if (hit.collider.tag == "NewPierBlock")
             {
-                Debug.Log("Buy new pier spot?");
-                hit.GameObject.GetComponent<Renderer>().color.a = 255;
+                //Debug.Log("Buy new pier spot?");
+                hit.transform.gameObject.GetComponent<Renderer>().material.SetFloat("_IsHovering", 1);
+                
             }
+            else{
+                hit.transform.gameObject.GetComponent<Renderer>().material.SetInt("_IsHovering", 0);
+            }
+            
             
         }
     }
