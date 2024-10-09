@@ -3,7 +3,7 @@ using TMPro;
 
 public class Health : MonoBehaviour
 {
-    public int AmountOfJumps = 2;
+    public int AmountOfJumps;
     public TMP_Text ThrowText;
 
     void Update()
@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
         ThrowText.text = "Jumps left: " + AmountOfJumps.ToString();
 
         if(AmountOfJumps <= 0){
-            Debug.Log("Game over");
+            //Debug.Log("Game over");
         }
     }
 }

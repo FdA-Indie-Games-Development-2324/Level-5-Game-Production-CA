@@ -22,7 +22,7 @@ public class PlatformGeneration : MonoBehaviour
     more fair and playable 
     */
     public float Overlapping;
-    Collider2D col;
+    public BoxCollider2D col;
     
 
     [Header("Prefabs")]
@@ -35,13 +35,22 @@ public class PlatformGeneration : MonoBehaviour
     [Header("Bools")]
     public bool hasPlayerEntered;
 
-    GameObject PlatformManager;
+    PlatformManager PlatformManager;
 
     void Start(){
-        PlatformManager = GameObject.Find("LevelManager");
-        Platform.GetComponent<PlatformManager>().NewPlatformSpawned = true;
-        
-        col = GetComponent<Collider2D>();
+        PlatformManager = GameObject.Find("LevelManager").GetComponent<PlatformManager>();
+
+        if(transform.childCount >= 1){
+            //Debug.Log("platforms already spawned");
+            foreach (Transform item in transform)
+            {
+                Destroy(item.gameObject);
+
+            }
+        }
+
+        col = GetComponent<BoxCollider2D>();
+
         for (int i = 0; i < PlatformAmount; i++)
         {
             Vector3 RandPoints = new Vector3(
@@ -50,21 +59,26 @@ public class PlatformGeneration : MonoBehaviour
             0
             );
             //Vector3 RandomPos = new Vector3(Random.Range(-2.5f, 2.5f), Random.Range(0, 10), 0);
-            Object Clone = Instantiate(Platform, RandPoints, Quaternion.identity, this.transform);
+            GameObject Clone = Instantiate(Platform, RandPoints, Quaternion.identity, this.transform);
         }
     }
 
     void OnTriggerEnter2D(){
-        Debug.Log("Player has entered a new chunk");
-        Vector3 Offset = new Vector3(0, col.bounds.max.y + 5.5f, 0);
-        //Spawn another box above here
-        Object NewChunk = Instantiate(ChunkPrefab, Offset, Quaternion.identity);
+        if(!hasPlayerEntered){
+            //Debug.Log("Player has entered a new chunk");
+            Vector3 Offset = new Vector3(0, col.bounds.max.y + 5.5f, 0);
+            //Spawn another box above here ffff
+            GameObject NewChunk = Instantiate(ChunkPrefab, Offset, Quaternion.identity);
+            hasPlayerEntered = true;
+
+            PlatformManager.CurrentChunks.Add(NewChunk);
+        }
     }
 
-    void OnDrawGizmos(){
+    /* void OnDrawGizmos(){
         BoudingBoxSize = col.bounds.size;
         
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(col.bounds.center, BoudingBoxSize);
-    }
+    } */
 }

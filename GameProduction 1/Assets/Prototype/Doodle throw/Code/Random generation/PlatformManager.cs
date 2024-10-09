@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlatformManager : MonoBehaviour
 {
-    public GameObject[] CurrentChunks = new GameObject[4];
+    public List<GameObject> CurrentChunks = new List<GameObject>();
     public bool NewPlatformSpawned;
 
     /// <summary>
@@ -14,8 +15,10 @@ public class PlatformManager : MonoBehaviour
 
     void Update()
     {
-        /* if(NewPlatformSpawned){
-            
-        } */
+        if(CurrentChunks.Count >= 4){
+            Debug.Log("4th has been met now delete it");
+            Destroy(CurrentChunks[0].gameObject);
+            CurrentChunks.Remove(CurrentChunks[0]);
+        }
     }
 }
