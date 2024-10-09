@@ -1,12 +1,14 @@
 using UnityEngine;
 
-public class CatThrow : MonoBehaviour
+public class CatJump : MonoBehaviour
 {   
     public float Power = 5f;
 
     LineRenderer lr;
 
     Rigidbody2D rb;
+
+    Health ThrowAmount;
 
     Vector2 DragStartPos;
 
@@ -16,12 +18,13 @@ public class CatThrow : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         lr = GetComponent<LineRenderer>();
 
+        ThrowAmount = GetComponent<Health>();
     }
 
     void Update()
     {
         Vector2 Vec2PointInWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Debug.Log(Vec2PointInWorld);
+        //Debug.Log(Vec2PointInWorld);
 
         if(Input.GetMouseButtonDown(0)){
             DragStartPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -31,7 +34,7 @@ public class CatThrow : MonoBehaviour
             Vector2 DragEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 _velocity = (DragEndPos - DragStartPos) * Power;
 
-            Vector2[] trajectory = Plot(rb, (Vector2)transform.position, -_velocity, 500);
+            Vector2[] trajectory = Plot(rb, (Vector2)transform.position, -_velocity, 750);
             lr.positionCount = trajectory.Length;
 
             Vector3[] position = new Vector3[trajectory.Length];
@@ -47,6 +50,7 @@ public class CatThrow : MonoBehaviour
             Vector2 _velocity = (DragEndPos - DragStartPos) * Power;
             
             rb.velocity = -_velocity;
+            ThrowAmount.AmountOfJumps -= 1;
         }
         
     }
@@ -69,6 +73,5 @@ public class CatThrow : MonoBehaviour
         }
 
         return results;
-
     }
 }
