@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -10,8 +11,9 @@ public class Health : MonoBehaviour
     {
         ThrowText.text = "Jumps left: " + AmountOfJumps.ToString();
 
-        if(AmountOfJumps <= 0){
-            //Debug.Log("Game over");
+        if(AmountOfJumps <= -1){
+            Debug.Log("Game over");
+            SceneManager.LoadScene("DoodleJumpThrow");
         }
     }
 }

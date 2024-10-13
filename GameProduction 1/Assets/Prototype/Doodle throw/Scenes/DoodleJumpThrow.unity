@@ -1355,7 +1355,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 1
   m_AngularDrag: 0
   m_GravityScale: 1
@@ -1567,7 +1567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979d62360a222134ba098a44131dcab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AmountOfJumps: 2
+  AmountOfJumps: 5
   ThrowText: {fileID: 343465626}
 --- !u!1 &1460043468
 GameObject:
