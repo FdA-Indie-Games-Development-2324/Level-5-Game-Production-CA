@@ -13,37 +13,58 @@ public class PlacementManager : MonoBehaviour
 
     [Header("Script References")]
     public GameObject MoneyManager;
-
-    [Header("Prefabs")]
-    public GameObject PierPrefab;
-    public GameObject FisherPrefab;
+    public GameObject ShopManager;
     
-    void Start()
-    {
-
-    }
 
     void Update()
     {
 
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && ShopManager.GetComponent<ShopManager>().IsShopOpen == false)
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-            if(hit.collider.CompareTag("NewPierBlock") && MoneyManager.GetComponent<MoneyManager>().Money >= 100){
-                MoneyManager.GetComponent<MoneyManager>().Money -= 100;
+            if(hit.collider.CompareTag("SmallPierSlot") && ShopManager.GetComponent<ShopManager>().FisherMenu == true){
+                
+                if(ShopManager.GetComponent<ShopManager>().Fisher1Bool && MoneyManager.GetComponent<MoneyManager>().Money >= 125){
+                    Debug.Log("Placed average fisher down");
+                    Instantiate(ShopManager.GetComponent<ItemsContainer>().FishersPrefab1, hit.collider.transform.position, Quaternion.identity);
+                    Destroy(hit.collider.gameObject);
+                    ShopManager.GetComponent<ShopManager>().FisherMenu = false;
+                    ShopManager.GetComponent<ShopManager>().Fisher1Bool = false;
+                }
 
-                GameObject Pier = Instantiate(PierPrefab, hit.collider.bounds.center, Quaternion.identity);
-
-                Destroy(hit.collider.gameObject);
             }
 
-            if(hit.collider.CompareTag("PierSlot") && MoneyManager.GetComponent<MoneyManager>().Money >= 10){
-                MoneyManager.GetComponent<MoneyManager>().Money -= 10;
+            if(hit.collider.CompareTag("LargePierSlot") && ShopManager.GetComponent<ShopManager>().FisherMenu == true){
+                
+                if(ShopManager.GetComponent<ShopManager>().Fisher2Bool && MoneyManager.GetComponent<MoneyManager>().Money >= 1200){
+                    Debug.Log("Placed boat fisher down");
+                    Instantiate(ShopManager.GetComponent<ItemsContainer>().FishersPrefab2, hit.collider.transform.position, Quaternion.identity);
+                    Destroy(hit.collider.gameObject);
+                    ShopManager.GetComponent<ShopManager>().FisherMenu = false;
+                    ShopManager.GetComponent<ShopManager>().Fisher2Bool = false;
+                }
 
-                GameObject Fisher = Instantiate(FisherPrefab, hit.collider.bounds.center, Quaternion.identity);
+            }
 
-                Destroy(hit.collider.gameObject);
+            if(hit.collider.CompareTag("NewPierBlock") && ShopManager.GetComponent<ShopManager>().PierMenu == true){
+                
+                if(ShopManager.GetComponent<ShopManager>().Pier1Bool){
+                    Debug.Log("Placed simple pier down");
+                    Instantiate(ShopManager.GetComponent<ItemsContainer>().PiersPrefab1, hit.collider.transform.position, Quaternion.identity);
+                    Destroy(hit.collider.gameObject);
+                    ShopManager.GetComponent<ShopManager>().PierMenu = false;
+                    ShopManager.GetComponent<ShopManager>().Pier1Bool = false;
+                }
+
+                if(ShopManager.GetComponent<ShopManager>().Pier2Bool){
+                    Debug.Log("Placed boat dock down");
+                    Instantiate(ShopManager.GetComponent<ItemsContainer>().PiersPrefab2, hit.collider.transform.position, Quaternion.identity);
+                    Destroy(hit.collider.gameObject);
+                    ShopManager.GetComponent<ShopManager>().PierMenu = false;
+                    ShopManager.GetComponent<ShopManager>().Pier2Bool = false;
+                }
+
             }
         }
 

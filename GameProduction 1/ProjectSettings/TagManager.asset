@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - NewPierBlock
-  - PierSlot
+  - SmallPierSlot
+  - LargePierSlot
   layers:
   - Default
   - TransparentFX
