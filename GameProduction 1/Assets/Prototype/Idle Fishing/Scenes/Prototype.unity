@@ -579,6 +579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShopMain: {fileID: 1179387710}
+  ShopButton: {fileID: 709027117}
   TwoStoreSelectionHolder: {fileID: 2030948822}
   FishersMain: {fileID: 1688516955}
   PiersMain: {fileID: 1764965857}
@@ -1170,7 +1171,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Cost
 
-    $250'
+    $500'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2481,7 +2482,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1027922249}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 93322628}
+        m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
+        m_MethodName: Pier2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1027922249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2801,7 +2814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09706fc5105e8184e88f9e102f6deded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Money: 0
+  Money: 5000
   MoneyText: {fileID: 1538927691}
 --- !u!4 &1286101760
 Transform:
@@ -3456,7 +3469,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoneyManager: {fileID: 1286101758}
   ShopManager: {fileID: 93322626}
-  ItemManager: {fileID: 93322626}
 --- !u!4 &1762530620
 Transform:
   m_ObjectHideFlags: 0
@@ -3995,7 +4007,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1923503133}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 93322628}
+        m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
+        m_MethodName: Pier1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1923503133
 MonoBehaviour:
   m_ObjectHideFlags: 0

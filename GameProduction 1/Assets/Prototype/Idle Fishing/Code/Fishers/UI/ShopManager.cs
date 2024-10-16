@@ -4,6 +4,7 @@ public class ShopManager : MonoBehaviour
 {
     [Header("Main UI")]
     public GameObject ShopMain;
+    public GameObject ShopButton;
 
     [Header("Part 2 UI")]
     public GameObject TwoStoreSelectionHolder;
@@ -27,7 +28,7 @@ public class ShopManager : MonoBehaviour
     public void OpenShop(){
         ShopMain.SetActive(true);
         TwoStoreSelectionHolder.SetActive(true);
-
+        ShopButton.SetActive(false);
         IsShopOpen = true;
     }
 
@@ -35,6 +36,7 @@ public class ShopManager : MonoBehaviour
         // Also need to hide the specific menus so that the menu can be re opened
         FishersMain.SetActive(false);
         ShopMain.SetActive(false);
+        ShopButton.SetActive(true);
 
         IsShopOpen = false;
     }

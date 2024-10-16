@@ -25,19 +25,23 @@ public class PlacementManager : MonoBehaviour
 
             if(hit.collider.CompareTag("SmallPierSlot") && ShopManager.GetComponent<ShopManager>().FisherMenu == true){
                 
+                // spawn average fisher
                 if(ShopManager.GetComponent<ShopManager>().Fisher1Bool && MoneyManager.GetComponent<MoneyManager>().Money >= 125){
                     Debug.Log("Placed average fisher down");
                     Instantiate(ShopManager.GetComponent<ItemsContainer>().FishersPrefab1, hit.collider.transform.position, Quaternion.identity);
                     Destroy(hit.collider.gameObject);
                     ShopManager.GetComponent<ShopManager>().FisherMenu = false;
                     ShopManager.GetComponent<ShopManager>().Fisher1Bool = false;
+
+                    MoneyManager.GetComponent<MoneyManager>().Money -= 125;
                 }
 
             }
 
             if(hit.collider.CompareTag("LargePierSlot") && ShopManager.GetComponent<ShopManager>().FisherMenu == true){
                 
-                if(ShopManager.GetComponent<ShopManager>().Fisher2Bool && MoneyManager.GetComponent<MoneyManager>().Money >= 1200){
+                // spawn boat
+                if(ShopManager.GetComponent<ShopManager>().Fisher2Bool && MoneyManager.GetComponent<MoneyManager>().Money >= 1500){
                     Debug.Log("Placed boat fisher down");
                     Instantiate(ShopManager.GetComponent<ItemsContainer>().FishersPrefab2, hit.collider.transform.position, Quaternion.identity);
                     Destroy(hit.collider.gameObject);
@@ -49,6 +53,7 @@ public class PlacementManager : MonoBehaviour
 
             if(hit.collider.CompareTag("NewPierBlock") && ShopManager.GetComponent<ShopManager>().PierMenu == true){
                 
+                // simple pier
                 if(ShopManager.GetComponent<ShopManager>().Pier1Bool){
                     Debug.Log("Placed simple pier down");
                     Instantiate(ShopManager.GetComponent<ItemsContainer>().PiersPrefab1, hit.collider.transform.position, Quaternion.identity);
@@ -57,6 +62,7 @@ public class PlacementManager : MonoBehaviour
                     ShopManager.GetComponent<ShopManager>().Pier1Bool = false;
                 }
 
+                // boat pier
                 if(ShopManager.GetComponent<ShopManager>().Pier2Bool){
                     Debug.Log("Placed boat dock down");
                     Instantiate(ShopManager.GetComponent<ItemsContainer>().PiersPrefab2, hit.collider.transform.position, Quaternion.identity);
@@ -64,9 +70,7 @@ public class PlacementManager : MonoBehaviour
                     ShopManager.GetComponent<ShopManager>().PierMenu = false;
                     ShopManager.GetComponent<ShopManager>().Pier2Bool = false;
                 }
-
             }
         }
-
     }
 }
