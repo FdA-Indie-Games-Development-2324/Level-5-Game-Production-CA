@@ -15,6 +15,7 @@ public class NewGrid : MonoBehaviour
     // Density shouldnt go above the amount of points in the griddata
     public int Density;
     public GameObject[] RandomWorldPrefabs;
+    public GameObject MapParentObject;
 
     void Start()
     {
@@ -56,7 +57,7 @@ public class NewGrid : MonoBehaviour
             //random game object from the list
             var RandomPos = Random.Range(0, GridData.Count);
             //sapawn random gameobject on random point
-            GameObject RandomWorld = Instantiate(RandomWorldPrefabs[RandomGO], GridData[RandomPos].transform.position, RandomY);
+            GameObject RandomWorld = Instantiate(RandomWorldPrefabs[RandomGO], GridData[RandomPos].transform.position, RandomY, MapParentObject.transform);
         } 
     }
 }

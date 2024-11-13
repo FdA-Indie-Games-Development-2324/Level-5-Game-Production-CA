@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    private Camera ZoomCam;
+    public Camera ZoomCam;
     public float ScrollSpeed;
     public float speed = 5f;
     public float ShiftSpeed = 7f;
@@ -28,6 +28,7 @@ public class CameraMovement : MonoBehaviour
         if(ZoomCam.orthographic){
             ZoomCam.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * ScrollSpeed;
         }
+
 
     }
 }

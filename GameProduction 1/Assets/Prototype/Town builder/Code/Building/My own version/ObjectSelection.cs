@@ -28,6 +28,8 @@ public class ObjectSelection : MonoBehaviour
     }
 
     RaycastHit hit;
+    GameObject CurrentlyHit;
+
     void Update(){
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = Cam.nearClipPlane;
@@ -35,24 +37,56 @@ public class ObjectSelection : MonoBehaviour
         Ray ray = Cam.ScreenPointToRay(mousePos);
 
         if(Physics.Raycast(ray, out hit, 100, SelectableObjects)){
-            Debug.Log(hit.transform.name);
+            //Debug.Log(hit.transform.name);
 
-            //IsHovering();
+            CurrentlyHit = hit.transform.gameObject;
+
+            IsHovering();
+            
+            if(Input.GetMouseButtonDown(0) && !IsEditing){
+                Editing();
+            }
         }
         else{
-            //NotHovering();
+            NotHovering();
         } 
     }
+
+    // -------------------- HOVERING --------------------
 
     void IsHovering(){
         // This will just show if the player is currently 
         // hovering a object with the layer mask
 
-        hit.transform.GetComponent<Renderer>().material.color = Color.red;
+        CurrentlyHit.transform.GetComponent<Renderer>().material.SetInt("_IsBeingHovered", 1);
     }
 
     void NotHovering(){
-        hit.transform.GetComponent<Renderer>().material.color = Color.white;
+        CurrentlyHit.transform.GetComponent<Renderer>().material.SetInt("_IsBeingHovered", 0);
     } 
+
+    // -------------------- EDITING --------------------
+
+    [Header("Editing")]
+    public bool IsEditing;
+    public GameObject CurrentEditGO;
+
+    void Editing(){
+        // Check are we already editing?
+        // IF no. Activate a edit panel around the selected object.
+
+        if(!IsEditing){
+            // Set IsEditing to true so that players cant go and click on another GO
+            IsEditing = true;
+            
+            // Need to set the object shader to be the consistent colour to show editing
+            // until the players leaves the editing
+
+            CurrentEditGO = CurrentlyHit;
+            
+            // Place or well snap the editing UI to here
+            Debug.Log("You are now editing " + CurrentlyHit.transform.name);
+        }
+    }
 
 }

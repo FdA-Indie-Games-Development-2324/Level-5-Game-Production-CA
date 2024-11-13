@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
     /// <summary>
@@ -49,7 +50,14 @@ public class NewPlacement : MonoBehaviour
             return;
         }
 
-        EditingVisual.SetActive(true);
+        // COPY ALL OF THE WIERD INPUT MANAGER FOR THIS AS YOU CANT USE THE CODE WITHOUT SIMILAR
+        // MECHANICS
+
+        /* GameObject newObject = Instantiate(dataBase.objectDataBases[SelectedID].Prefab);
+        newObject.transform.position = MouseInWorld(); */
+
+        //EditingVisual.SetActive(true);
+        Debug.Log(MouseInWorld());
 
         SpawningANDPlacing();
     }

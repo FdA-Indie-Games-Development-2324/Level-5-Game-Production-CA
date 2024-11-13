@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 455490}
   - component: {fileID: 3304870}
   - component: {fileID: 2336956}
-  - component: {fileID: 5095248067530014189}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: SM_Env_Flower_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2834414, y: 1.2834414, z: 1.2834414}
+  m_LocalScale: {x: 1.0749707, y: 1.0749707, z: 1.0749707}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,24 +83,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5095248067530014189
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 191548}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.81951416, y: 0.5105091, z: 0.64261526}
-  m_Center: {x: -0.0000012218952, y: -0.066721916, z: 0}
