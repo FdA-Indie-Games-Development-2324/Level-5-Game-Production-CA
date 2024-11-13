@@ -12,6 +12,7 @@ public class ObjectsDataSO : ScriptableObject
 public class ObjectDataBase{
     public string Name;
     public int ID;
+    public string Type;
     public GameObject Prefab;
     public float MinRotation;
     public float MaxRotation;

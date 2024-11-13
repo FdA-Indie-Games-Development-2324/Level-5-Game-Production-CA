@@ -5,29 +5,33 @@ using UnityEngine.EventSystems;
 public class InputManager : MonoBehaviour
 {
     public Camera Cam;
-    Vector3 lastPosition;
+    public Vector3 lastPosition;
     public LayerMask placementLayerMask;
+    public Vector3 mousePos;
 
     public event Action OnClicked, OnExit;
 
     void Awake(){
         //Cursor.visible = false;
         //Cursor.lockState = CursorLockMode.Confined;
+
+        Cam = Camera.main;
     }
 
     void Update(){
         if(Input.GetMouseButtonDown(0)){
-            OnClicked.Invoke();
+            OnClicked?.Invoke();
         }
 
         if(Input.GetKeyDown(KeyCode.Escape)){
-            OnExit.Invoke();
+            OnExit?.Invoke();
         }
     }
 
     public bool isPointerOverUI()
         => EventSystem.current.IsPointerOverGameObject();
 
+    public RaycastHit hit;
     public Vector3 GetSelectedMapPos(){
 
         // gets the mouse poisition as a Vector3
@@ -35,11 +39,12 @@ public class InputManager : MonoBehaviour
         mousePos.z = Cam.nearClipPlane;
 
         Ray ray = Cam.ScreenPointToRay(mousePos);
-        RaycastHit hit;
         if(Physics.Raycast(ray, out hit, 100, placementLayerMask)){
             lastPosition = hit.point;
         }
 
         return lastPosition;
     }
+
+    
 }

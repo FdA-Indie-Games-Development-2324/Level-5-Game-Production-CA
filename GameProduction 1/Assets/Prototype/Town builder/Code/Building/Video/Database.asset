@@ -15,15 +15,31 @@ MonoBehaviour:
   objectDataBases:
   - Name: Temp Housing 1
     ID: 0
+    Type: House
     Prefab: {fileID: 9101308677674156497, guid: 655a517fb573c8d44afbd4f2602beb7f,
       type: 3}
+    MinRotation: 0
+    MaxRotation: 0
     Size: {x: 6, y: 4}
   - Name: Tree
     ID: 1
+    Type: Environment
     Prefab: {fileID: 6056282586360471799, guid: ac77f61ad2bb38047b3c9d7c5506e1cd,
       type: 3}
+    MinRotation: 0
+    MaxRotation: 0
     Size: {x: 1, y: 1}
   - Name: 
     ID: 0
+    Type: 
     Prefab: {fileID: 0}
+    MinRotation: 0
+    MaxRotation: 0
+    Size: {x: 1, y: 1}
+  - Name: 
+    ID: 0
+    Type: 
+    Prefab: {fileID: 0}
+    MinRotation: 0
+    MaxRotation: 0
     Size: {x: 1, y: 1}

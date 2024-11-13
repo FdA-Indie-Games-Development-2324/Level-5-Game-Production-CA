@@ -12,5 +12,6 @@ public class NewObjectsDataSO : ScriptableObject
 public class NewObjectDataBase{
     public string Name;
     public int ID;
+    public string Type;
     public GameObject Prefab;
 }

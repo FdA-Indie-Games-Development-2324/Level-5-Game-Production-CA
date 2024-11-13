@@ -21,22 +21,24 @@ public class NewPlacement : MonoBehaviour
 
     [Header("Selection and placement")]
     public ObjectsDataSO dataBase;
+    public BuildingManager buildingManager;
+    public InputManager inputManager;
+    public NewGrid newGrid;
     public int SelectedID = -1;
     public GameObject EditingVisual;
     Vector3 mousePos;
+    Vector3 gridPos;
     Vector3 lastPosition;
     Camera Cam;
     public LayerMask placementLayerMask;
 
     void Start(){
         StopPlacing();
+        minDist = 1;
 
         Cam = Camera.main;
     }
 
-    void Update(){
-        
-    }
 
     public void StartPlacing(int ID){
         // Calling this function resets the current selected ID to nothing
@@ -44,6 +46,8 @@ public class NewPlacement : MonoBehaviour
         StopPlacing();
 
         SelectedID = dataBase.objectDataBases.FindIndex(data => data.ID == ID);
+
+        Debug.Log(SelectedID);
 
         if(SelectedID < 0){
             Debug.LogError($"No ID found {ID}");
@@ -53,34 +57,73 @@ public class NewPlacement : MonoBehaviour
         // COPY ALL OF THE WIERD INPUT MANAGER FOR THIS AS YOU CANT USE THE CODE WITHOUT SIMILAR
         // MECHANICS
 
-        /* GameObject newObject = Instantiate(dataBase.objectDataBases[SelectedID].Prefab);
-        newObject.transform.position = MouseInWorld(); */
+        Cursor.visible = false;
+        EditingVisual.SetActive(true);
+        mouseIndicator.SetActive(true);
 
-        //EditingVisual.SetActive(true);
-        Debug.Log(MouseInWorld());
-
-        SpawningANDPlacing();
+        inputManager.OnClicked += SpawningANDPlacing;
+        inputManager.OnExit += StopPlacing;
     }
 
     void SpawningANDPlacing(){
+
+        if(inputManager.isPointerOverUI()){
+            return;
+        } 
+
+        mousePos = inputManager.GetSelectedMapPos();
+
         GameObject newObject = Instantiate(dataBase.objectDataBases[SelectedID].Prefab);
+        newObject.transform.position = gridPos;
+
+        StopPlacing();
+
+        if(dataBase.objectDataBases[SelectedID].Type == "House"){
+            buildingManager.PlacedBuildings.Add(newObject);
+        }
+
+        if(dataBase.objectDataBases[SelectedID].Type == "Shop"){
+            buildingManager.PlacedShops.Add(newObject);
+        }
+
     }
 
     public void StopPlacing(){
         SelectedID = -1;
         EditingVisual.SetActive(false);
+        mouseIndicator.SetActive(false);
+        
+        Cursor.visible = true;
     }
 
-    public Vector3 MouseInWorld(){
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = Cam.nearClipPlane;
+    float dist;
+    float minDist;
 
-        Ray ray = Cam.ScreenPointToRay(mousePos);
-        RaycastHit hit;
-        if(Physics.Raycast(ray, out hit, 100, placementLayerMask)){
-            lastPosition = hit.point;
+    void Update(){
+        if(SelectedID < 0){
+            return;
         }
 
-        return lastPosition;
+        Vector3 mousePos = inputManager.GetSelectedMapPos();
+        
+        for (int i = 0; i < newGrid.GridData.Count; i++)
+        {
+            // LOOP THROUGH ALL OF THE GOS AND CHECK WHAT IS CLOSEST TO THE MOUSE
+
+            dist = Vector3.Distance(inputManager.GetSelectedMapPos(), newGrid.GridData[i].gameObject.transform.position);
+
+            if(dist <= minDist){
+                gridPos = newGrid.GridData[i].gameObject.transform.position;
+                //Debug.Log(gridPos);
+            }
+        }
+        
+        mouseIndicator.transform.position = gridPos;
+
+        Vector3 RayPoint = new Vector3(inputManager.hit.point.x, 0, inputManager.hit.point.z);
+        
+        //Debug.Log(inputManager.mousePos);
+        EditingVisual.GetComponent<Renderer>().material.SetVector("_MouseCur", RayPoint);
+
     }
 }

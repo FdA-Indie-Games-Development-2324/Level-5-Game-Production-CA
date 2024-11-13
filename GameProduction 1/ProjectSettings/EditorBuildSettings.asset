@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Prototype/Idle Fishing/Scenes/Prototype.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Prototype/Town builder/Scenes/TownBuilder OwnBuilding.unity
+    guid: 0d90fc8fd80290a41aefe1d459cbc443
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: b29a75e41cc2c5d4ab300ef32ad110a1,
       type: 2}
