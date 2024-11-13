@@ -76,16 +76,18 @@ public class NewPlacement : MonoBehaviour
         GameObject newObject = Instantiate(dataBase.objectDataBases[SelectedID].Prefab);
         newObject.transform.position = gridPos;
 
-        StopPlacing();
+        Debug.Log(dataBase.objectDataBases[SelectedID].Type);
 
         if(dataBase.objectDataBases[SelectedID].Type == "House"){
             buildingManager.PlacedBuildings.Add(newObject);
+            Debug.Log("is this working?");
         }
 
         if(dataBase.objectDataBases[SelectedID].Type == "Shop"){
             buildingManager.PlacedShops.Add(newObject);
         }
 
+        StopPlacing();
     }
 
     public void StopPlacing(){

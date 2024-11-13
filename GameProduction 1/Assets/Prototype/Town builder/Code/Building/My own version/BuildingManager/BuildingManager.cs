@@ -8,4 +8,26 @@ public class BuildingManager : MonoBehaviour
     public List<GameObject> PlacedBuildings = new();
     public List<GameObject> PlacedShops = new();
     public NewPlacement BuildingPlacement;
+
+    void Update(){
+
+    }
+
+    void Houses(){
+
+    }
+
+    void Shops(){
+
+    }
+
+    public void AddHouse(){
+        // should I create every object with a new id that is stored here. 
+        // This is then used to store data about the building placed.
+        // Editing would be easier as well
+    }
+
+    public void AddShop(){
+
+    }
 }
