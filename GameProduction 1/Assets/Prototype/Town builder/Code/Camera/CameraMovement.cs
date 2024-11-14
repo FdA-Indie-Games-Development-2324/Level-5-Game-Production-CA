@@ -17,10 +17,10 @@ public class CameraMovement : MonoBehaviour
 
 
         if(Input.GetKey(KeyCode.LeftShift)){
-            transform.position += moveDirection * ShiftSpeed * Time.deltaTime;
+            transform.position += moveDirection.normalized * ShiftSpeed * Time.deltaTime;
         }
         else{
-            transform.position += moveDirection * speed * Time.deltaTime;
+            transform.position += moveDirection.normalized * speed * Time.deltaTime;
         }
         
         ZoomCam.orthographicSize = Mathf.Clamp(ZoomCam.orthographicSize, 5, 18);

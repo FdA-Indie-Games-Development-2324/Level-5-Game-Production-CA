@@ -62,7 +62,12 @@ public class ObjectSelection : MonoBehaviour
     }
 
     void NotHovering(){
-        CurrentlyHit.transform.GetComponent<Renderer>().material.SetInt("_IsBeingHovered", 0);
+        if(!hit.transform.gameObject){
+            CurrentlyHit.transform.GetComponent<Renderer>().material.SetInt("_IsBeingHovered", 0);
+        }
+        else{
+            Debug.Log("Not hitting object");
+        }
     } 
 
     // -------------------- EDITING --------------------
