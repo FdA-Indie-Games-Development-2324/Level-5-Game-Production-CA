@@ -2030,7 +2030,7 @@ MonoBehaviour:
   isToggleOn: 1
   FadeToBlack: 1
   MaxAlpha: {r: 0, g: 0, b: 0, a: 1}
-  timeToFade: 5
+  timeToFade: 2
   FadeToAlpha: 0
   MinAlpha: {r: 0, g: 0, b: 0, a: 0}
   timeToDisappear: 0

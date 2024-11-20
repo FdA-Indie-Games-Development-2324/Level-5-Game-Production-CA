@@ -130,31 +130,30 @@ public class LoadingScreenManager : MonoBehaviour
             IsGenerationComplete = true;
 
             LoadingBar.fillAmount = 0;
-            Header.text = "Starting game";
 
             StartCoroutine(FadeANDDisable());
         }
     }
     #endregion
 
-    IEnumerator FadeANDDisable(){
 
+    IEnumerator FadeANDDisable(){
+        Header.text = "Starting game";
 
         // Change the text to done & also fade all of this text
-        LoadingText.text = "Generation complete";
+        LoadingText.text = "Completed";
         
         if (IsGenerationComplete)
         {    
             // Fade out the backdrop
             BlackOut.GetComponent<SimpleAnimations>().FadeOutScreen();
             Header.GetComponent<SimpleAnimations>().FadeOutView();
-            LoadingText.GetComponent<SimpleAnimations>().FadeOutView();
-            PercentageText.GetComponent<SimpleAnimations>().FadeOutView();
+            LoadingText.gameObject.SetActive(false);
+            PercentageText.gameObject.SetActive(false);
             
             yield return new WaitForSeconds(BlackOut.GetComponent<SimpleAnimations>().timeToDisappear);
 
             BlackOut.transform.parent.transform.gameObject.SetActive(false);
         }
-
     }
 }

@@ -76,11 +76,11 @@ public class SimpleAnimations : MonoBehaviour
 
     public void FadeIntoView(){
         if(FadeIntoText){
-            GetComponent<TMP_Text>().DOColor(FadeToColour, timeToFadeToCol);
+            GetComponent<TMP_Text>().DOFade(1, timeToFadeToCol);
         }
 
         if(FadeIntoImage){
-            GetComponent<Image>().DOColor(FadeToColour, timeToFadeToCol);
+            GetComponent<Image>().DOFade(1, timeToFadeToCol);
         }
     }
 
