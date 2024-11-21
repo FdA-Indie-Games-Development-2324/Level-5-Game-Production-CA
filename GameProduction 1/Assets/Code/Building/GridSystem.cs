@@ -119,7 +119,7 @@ public class GridSystem : MonoBehaviour
             // This will be used
             objSpawned++;
             TreeCurrentPercent = objSpawned/TreeDensity * 100;
-            Debug.Log(TreeCurrentPercent);
+            //Debug.Log(TreeCurrentPercent);
             
             yield return new WaitForEndOfFrame();
         }

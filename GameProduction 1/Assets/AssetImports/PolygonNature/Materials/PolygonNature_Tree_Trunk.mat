@@ -153,6 +153,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _IsBeingHovered: 0
     - _Leaves_Wave: 6.06
     - _Leaves_WindAmount: 0.26
     - _Leaves_WindSpeed: 0.2

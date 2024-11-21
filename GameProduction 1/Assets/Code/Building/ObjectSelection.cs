@@ -42,6 +42,8 @@ public class ObjectSelection : MonoBehaviour
             CurrentlyHit = hit.transform.gameObject;
 
             IsHovering();
+
+            Debug.Log(CurrentlyHit.transform.GetComponentInChildren<Renderer>().material.GetInt("_IsBeingHovered"));
             
             if(Input.GetMouseButtonDown(0) && !IsEditing){
                 Editing();
@@ -58,11 +60,15 @@ public class ObjectSelection : MonoBehaviour
         // This will just show if the player is currently 
         // hovering a object with the layer mask
 
-        CurrentlyHit.transform.GetComponent<Renderer>().material.SetInt("_IsBeingHovered", 1);
+        
+
+        CurrentlyHit.transform.GetComponentInChildren<Renderer>().material.SetInt("_IsBeingHovered", 1);
+        Debug.Log(CurrentlyHit.name);
+
     }
 
     void NotHovering(){
-        CurrentlyHit.transform.GetComponent<Renderer>().material.SetInt("_IsBeingHovered", 0);
+        //CurrentlyHit.transform.GetComponent<Renderer>().material.SetInt("_IsBeingHovered", 0);
     } 
 
     // -------------------- EDITING --------------------
