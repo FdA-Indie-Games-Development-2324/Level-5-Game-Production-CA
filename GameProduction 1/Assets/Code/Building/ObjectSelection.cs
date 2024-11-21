@@ -43,8 +43,7 @@ public class ObjectSelection : MonoBehaviour
 
             IsHovering();
 
-            Debug.Log(CurrentlyHit.transform.GetComponentInChildren<Renderer>().material.GetInt("_IsBeingHovered"));
-            
+            Debug.Log(CurrentlyHit.transform.GetComponentInChildren<Renderer>().material.GetInt("_IsBeingHovered"));            
             if(Input.GetMouseButtonDown(0) && !IsEditing){
                 Editing();
             }
@@ -56,19 +55,30 @@ public class ObjectSelection : MonoBehaviour
 
     // -------------------- HOVERING --------------------
 
+    public Material[] HoveringMat;
     void IsHovering(){
         // This will just show if the player is currently 
         // hovering a object with the layer mask
 
+        HoveringMat = CurrentlyHit.transform.GetComponent<Renderer>().materials;
         
-
-        CurrentlyHit.transform.GetComponentInChildren<Renderer>().material.SetInt("_IsBeingHovered", 1);
+        foreach (var item in HoveringMat)
+        {
+            item.SetInt("_IsBeingHovered", 1);
+            //Debug.Log(item.);
+        }
         Debug.Log(CurrentlyHit.name);
 
     }
 
     void NotHovering(){
-        //CurrentlyHit.transform.GetComponent<Renderer>().material.SetInt("_IsBeingHovered", 0);
+        HoveringMat = CurrentlyHit.transform.GetComponent<Renderer>().materials;
+        
+        foreach (var item in HoveringMat)
+        {
+            item.SetInt("_IsBeingHovered", 0);
+            //Debug.Log(item.);
+        }
     } 
 
     // -------------------- EDITING --------------------

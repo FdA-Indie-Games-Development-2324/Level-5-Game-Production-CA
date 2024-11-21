@@ -1884,7 +1884,7 @@ MonoBehaviour:
   GridData: []
   TreeDensity: 400
   TreePrefabs:
-  - {fileID: 1247767785291130, guid: 0734397d1a4fd924f98424ecb4ca43b9, type: 3}
+  - {fileID: 1788851852344936, guid: 2df6c259e4a67614fac8c85e23ecb3d5, type: 3}
   TreeParent: {fileID: 858780210}
   CompletedTrees: 0
   RockDensity: 100
@@ -2925,6 +2925,7 @@ MonoBehaviour:
   SelectableObjects:
     serializedVersion: 2
     m_Bits: 64
+  HoveringMat: []
   IsEditing: 0
   CurrentEditGO: {fileID: 0}
 --- !u!1 &1637081826
