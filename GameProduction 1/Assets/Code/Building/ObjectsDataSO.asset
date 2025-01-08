@@ -16,6 +16,12 @@ MonoBehaviour:
   - ID: 0
     Type: House
     GridSize: {x: 7, y: 7}
+    BuildingLevel: 1
+    XPGain: 5
+    RequiredGold: 75
+    RequiredResources: 10
+    TimeToBuild: 5
+    TimeToDestroy: 5
     GenerationAmount: 0
     GenerationTime: 0
     Prefab: {fileID: 6860487529758843922, guid: cf0b105c151f47d48a6f4d41ad2ce303,

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
     /// <summary>
@@ -34,6 +35,10 @@ public class PlacementSystem : MonoBehaviour
     Camera Cam;
     public LayerMask placementLayerMask;
 
+    [Header("Audio")]
+    public AudioSource AudioPlayer;
+    public AudioClip PlacementSFX;
+
     void Start(){
         StopPlacing();
         minDist = 1;
@@ -47,8 +52,6 @@ public class PlacementSystem : MonoBehaviour
         // This is needed to allow players to use their current selection.
         StopPlacing();
 
-        HotbarScript.CanSwitch = false;
-        HotbarScript.CurrentActivePanel.GetComponent<SimpleAnimations>().PanelMoving(false);
 
         SelectedID = dataBase.objectDataBases.FindIndex(data => data.ID == ID);
 
@@ -75,13 +78,23 @@ public class PlacementSystem : MonoBehaviour
 
         PrefabPlacementPreview(SelectedID);
 
+        // Extra quality of life stuff;
+        HotbarScript.CanSwitch = false;
+        
+        if(HotbarScript.CurrentActivePanel.GetComponentInChildren<SimpleAnimations>() != null){
+            //Debug.Log("Object has a animation");
+            HotbarScript.CurrentActivePanel.GetComponentInChildren<SimpleAnimations>().PanelMoving(false);
+        } 
+
+        HotbarScript.CurrentModeText.text = "Placing structure";
+
         // End of my version
 
 
         // COPY ALL OF THE WIERD INPUT MANAGER FOR THIS AS YOU CANT USE THE CODE WITHOUT SIMILAR
         // MECHANICS - idk what this guy is talking about tbh
 
-        Cursor.visible = false;
+        //Cursor.visible = false;
         EditingVisual.SetActive(true);
         mouseIndicator.SetActive(true);
 
@@ -134,6 +147,13 @@ public class PlacementSystem : MonoBehaviour
         GameObject newObject = Instantiate(dataBase.objectDataBases[SelectedID].Prefab);
         newObject.transform.position = gridPos;
 
+        // AUDIO
+        AudioPlayer.clip = PlacementSFX;
+        AudioPlayer.volume = 1;
+        AudioPlayer.Play();
+        StartCoroutine(WaitForAudioClip());
+        
+
         //Debug.Log(dataBase.objectDataBases[SelectedID].Type);
 
         if(dataBase.objectDataBases[SelectedID].Type == "House"){
@@ -153,16 +173,20 @@ public class PlacementSystem : MonoBehaviour
         EditingVisual.SetActive(false);
         mouseIndicator.SetActive(false);
 
-        HotbarScript.CanSwitch = true;
-        if(HotbarScript.CurrentActivePanel.GetComponent<SimpleAnimations>() != null){
-            HotbarScript.CurrentActivePanel.GetComponent<SimpleAnimations>().PanelMoving(true);
-        }
 
         // OWN CODE
 
         // Considering that the player has just clicked to place the prefab it would probably be 
         // best to destroy the preview version. 
         Destroy(TempPreview);
+        
+        HotbarScript.CanSwitch = true;
+        if(HotbarScript.CurrentActivePanel.GetComponentInChildren<SimpleAnimations>() != null){
+            //Debug.Log("Object has a animation");
+            HotbarScript.CurrentActivePanel.GetComponentInChildren<SimpleAnimations>().PanelMoving(true);
+        }
+
+        HotbarScript.CurrentModeText.text = "Shopping";
 
         // END OF MY CODE
         
@@ -203,8 +227,15 @@ public class PlacementSystem : MonoBehaviour
 
         Vector3 RayPoint = new Vector3(inputManager.hit.point.x, 0, inputManager.hit.point.z);
         
-        Debug.Log(inputManager.mousePos);
+        //Debug.Log(inputManager.mousePos);
         //EditingVisual.GetComponent<Renderer>().material.SetVector("_MouseCur", RayPoint);
 
+    }
+
+    IEnumerator WaitForAudioClip(){
+
+        yield return new WaitForSeconds(.5f);
+
+        AudioPlayer.volume = .3f;
     }
 }

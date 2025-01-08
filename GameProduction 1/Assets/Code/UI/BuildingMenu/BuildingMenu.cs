@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,7 @@ public class BuildingMenu : MonoBehaviour
     public GameObject ResourcesMenu;
     public GameObject DecorationsMenu;
 
+    public TMP_Text CurrentModeText;
     public GameObject[] HotbarSlots;
     public GameObject CurrentActivePanel;
 
@@ -75,6 +77,10 @@ public class BuildingMenu : MonoBehaviour
                     HotbarSlots[index].GetComponent<Button>().interactable = false;
                     CurrentActivePanel = HotbarSlots[index];
                     //Debug.Log("Preview mode");
+
+                    objectSelection.NotHovering();
+
+                    CurrentModeText.text = "Preview";
                     break;
 
                 case 1:
@@ -83,6 +89,8 @@ public class BuildingMenu : MonoBehaviour
                     CurrentActivePanel = HotbarSlots[index];
                     //Debug.Log("Editing mode");
                     objectSelection.EditMode = true;
+
+                    CurrentModeText.text = "Edit";
                     break;
 
                 case 2:
@@ -91,6 +99,10 @@ public class BuildingMenu : MonoBehaviour
                     CurrentActivePanel = HotbarSlots[index];
                     //Debug.Log("Buildings menu");
                     HouseMenu.GetComponent<SimpleAnimations>().PanelMoving(true);
+
+                    objectSelection.NotHovering();
+
+                    CurrentModeText.text = "Shopping";
                     break;
 
                 case 3:
@@ -99,6 +111,10 @@ public class BuildingMenu : MonoBehaviour
                     CurrentActivePanel = HotbarSlots[index];
                     //Debug.Log("Resources menu");
                     ResourcesMenu.GetComponent<SimpleAnimations>().PanelMoving(true);
+
+                    objectSelection.NotHovering();
+
+                    CurrentModeText.text = "Shopping";
                     break;
 
                 case 4:
@@ -107,6 +123,10 @@ public class BuildingMenu : MonoBehaviour
                     CurrentActivePanel = HotbarSlots[index];
                     //Debug.Log("Decorations menu");
                     DecorationsMenu.GetComponent<SimpleAnimations>().PanelMoving(true);
+
+                    objectSelection.NotHovering();
+
+                    CurrentModeText.text = "Shopping";
                     break;
 
                 default:

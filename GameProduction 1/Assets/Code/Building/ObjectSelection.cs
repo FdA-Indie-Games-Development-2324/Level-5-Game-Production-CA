@@ -27,6 +27,7 @@ public class ObjectSelection : MonoBehaviour
     [Header("Script references")]
     public PlayerStatistics playerStatistics;
     public BuildingMenu HotbarScript;
+    public InputManager inputManager;
 
     void Start(){
         Cam = Camera.main;
@@ -41,9 +42,13 @@ public class ObjectSelection : MonoBehaviour
 
         Ray ray = Cam.ScreenPointToRay(mousePos);
 
+        /* if(inputManager.isPointerOverUI()){
+            return;
+        }  */
 
         if(EditMode && Physics.Raycast(ray, out hit, 100)){
-            CurrentlyHighlighted = hit.transform.root.gameObject;
+            //Debug.Log(hit.transform.name);
+            CurrentlyHighlighted = hit.transform.gameObject;
 
             // HIGHLIGHTING
             if(CurrentlyHighlighted.layer == LayerMask.NameToLayer("EditableGO") && !IfHigh && !IsEditing){
