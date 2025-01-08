@@ -98,5 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e3f60cd26e6596469209b14502be0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FishRate: 5
   Min: 2
   Max: 5

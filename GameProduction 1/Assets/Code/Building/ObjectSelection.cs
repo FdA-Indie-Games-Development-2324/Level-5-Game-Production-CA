@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class ObjectSelection : MonoBehaviour
@@ -15,11 +16,17 @@ public class ObjectSelection : MonoBehaviour
     // 
 
     [Header("Properties")]
-    public LayerMask SelectableObjects;
-    
+    //public LayerMask SelectableObjects;
     Camera Cam;
     Renderer Rend;
+    RaycastHit hit;
+    public bool EditMode;
+    public GameObject LastHighlighted;
+    public GameObject CurrentlyHighlighted;
 
+    [Header("Script references")]
+    public PlayerStatistics playerStatistics;
+    public BuildingMenu HotbarScript;
 
     void Start(){
         Cam = Camera.main;
@@ -27,8 +34,6 @@ public class ObjectSelection : MonoBehaviour
         Rend = GetComponent<Renderer>();
     }
 
-    RaycastHit hit;
-    GameObject CurrentlyHit;
 
     void Update(){
         Vector3 mousePos = Input.mousePosition;
@@ -36,48 +41,64 @@ public class ObjectSelection : MonoBehaviour
 
         Ray ray = Cam.ScreenPointToRay(mousePos);
 
-        if(Physics.Raycast(ray, out hit, 100, SelectableObjects)){
-            //Debug.Log(hit.transform.name);
 
-            CurrentlyHit = hit.transform.gameObject;
+        if(EditMode && Physics.Raycast(ray, out hit, 100)){
+            CurrentlyHighlighted = hit.transform.root.gameObject;
 
-            IsHovering();
+            // HIGHLIGHTING
+            if(CurrentlyHighlighted.layer == LayerMask.NameToLayer("EditableGO") && !IfHigh && !IsEditing){
+                IsHovering();
+                LastHighlighted = CurrentlyHighlighted;
+                //Debug.Log("Are we getting here?");
+            }
 
-            Debug.Log(CurrentlyHit.transform.GetComponentInChildren<Renderer>().material.GetInt("_IsBeingHovered"));            
-            if(Input.GetMouseButtonDown(0) && !IsEditing){
+            // Select
+            if(Input.GetMouseButtonDown(0) && CurrentlyHighlighted.layer == LayerMask.NameToLayer("EditableGO") && IfHigh && !IsEditing){
+                CurrentEditGO = CurrentlyHighlighted;
+                HotbarScript.CanSwitch = false;
                 Editing();
+                //Debug.Log("Are we getting here?");
+
+                // Audio
+                MainButtonAudioSource.clip = onClickToEdit;
+                MainButtonAudioSource.Play();
+            }
+
+            // Not hovering anymore
+            if(CurrentlyHighlighted != LastHighlighted && LastHighlighted != null && !IsEditing){
+                NotHovering();
             }
         }
-        else{
-            NotHovering();
-        } 
     }
 
     // -------------------- HOVERING --------------------
 
     public Material[] HoveringMat;
-    void IsHovering(){
+    public bool IfHigh;
+
+    public void IsHovering(){
         // This will just show if the player is currently 
         // hovering a object with the layer mask
 
-        HoveringMat = CurrentlyHit.transform.GetComponent<Renderer>().materials;
+        IfHigh = true;
+
+        HoveringMat = CurrentlyHighlighted.transform.GetComponent<Renderer>().materials;
         
         foreach (var item in HoveringMat)
         {
             item.SetInt("_IsBeingHovered", 1);
-            //Debug.Log(item.);
         }
-        Debug.Log(CurrentlyHit.name);
 
     }
 
-    void NotHovering(){
-        HoveringMat = CurrentlyHit.transform.GetComponent<Renderer>().materials;
+    public void NotHovering(){
+        HoveringMat = LastHighlighted.transform.GetComponent<Renderer>().materials;
         
+        IfHigh = false;
+
         foreach (var item in HoveringMat)
         {
             item.SetInt("_IsBeingHovered", 0);
-            //Debug.Log(item.);
         }
     } 
 
@@ -87,6 +108,15 @@ public class ObjectSelection : MonoBehaviour
     public bool IsEditing;
     public GameObject CurrentEditGO;
 
+    [Space(10)]
+    public GameObject MenuParent;
+    public TMP_Text ObjectName;
+
+    [Space(10)]
+    public AudioSource MainButtonAudioSource;
+    public AudioClip onClickToEdit;
+    public AudioClip onClickToConfirm;
+
     void Editing(){
         // Check are we already editing?
         // IF no. Activate a edit panel around the selected object.
@@ -95,14 +125,62 @@ public class ObjectSelection : MonoBehaviour
             // Set IsEditing to true so that players cant go and click on another GO
             IsEditing = true;
             
+            GetObjectData();
+            MenuParent.SetActive(true);
+
             // Need to set the object shader to be the consistent colour to show editing
             // until the players leaves the editing
+            IsHovering();
 
-            CurrentEditGO = CurrentlyHit;
-            
-            // Place or well snap the editing UI to here
-            Debug.Log("You are now editing " + CurrentlyHit.transform.name);
         }
     }
 
+    public void ConfirmEdit(){
+        // This will close the edit mode and allow the player to select a new object
+
+        CurrentEditGO = null;
+
+        HotbarScript.CanSwitch = true;
+
+        IsEditing = false;
+
+        MenuParent.SetActive(false);
+
+        NotHovering();
+
+        // Audio
+        MainButtonAudioSource.clip = onClickToConfirm;
+        MainButtonAudioSource.Play();
+    }
+
+    void GetObjectData(){
+        Debug.Log("Grabbed object data");
+        if(CurrentEditGO.tag == "Tree"){
+            //Debug.Log("This is a tree");
+            ObjectName.text = "Tree";
+        }
+
+        if(CurrentEditGO.tag == "Bush"){
+            //Debug.Log("This is a tree");
+            ObjectName.text = "Bush";
+        }
+
+        if(CurrentEditGO.tag == "SmallHouse"){
+            //Debug.Log("This is a tree");
+            ObjectName.text = "Small house";
+        }
+
+        if(CurrentEditGO.tag == "LargeHouse"){
+            //Debug.Log("This is a tree");
+            ObjectName.text = "Large house";
+        }
+    }
+
+    public void RemoveObj(){
+        if(CurrentEditGO.tag == "Tree"){
+            Debug.Log("This is a tree");
+            ObjectName.text = "Tree";
+        }
+        ConfirmEdit();
+    }
 }

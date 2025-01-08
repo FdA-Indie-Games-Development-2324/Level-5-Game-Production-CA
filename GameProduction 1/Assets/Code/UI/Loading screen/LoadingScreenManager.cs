@@ -6,10 +6,11 @@ using UnityEngine.UI;
 public class LoadingScreenManager : MonoBehaviour
 {
     [Header("UI")]
+    public Transform LoadingScreenParent;
     public TMP_Text Header;
     public TMP_Text LoadingText;
     public TMP_Text PercentageText;
-    public Image LoadingBar;
+    public Image LoadingBar, BarBackdrop, BarBackdrop2, LeftBorderIMG, RightBorderIMG;
 
     [Header("Completed UI")]
     public GameObject BlackOut;
@@ -31,7 +32,7 @@ public class LoadingScreenManager : MonoBehaviour
         MaxValue = 100;
         CurrentValue = 0;
 
-        Debug.Log(MaxValue);
+        //Debug.Log(MaxValue);
     }
 
     // Reference to the loading screen to disable once generated
@@ -146,14 +147,24 @@ public class LoadingScreenManager : MonoBehaviour
         if (IsGenerationComplete)
         {    
             // Fade out the backdrop
+            
+            LoadingBar.GetComponent<SimpleAnimations>().FadeOutView();
+            BarBackdrop.GetComponent<SimpleAnimations>().FadeOutView();
+            BarBackdrop2.GetComponent<SimpleAnimations>().FadeOutView();
+            LeftBorderIMG.GetComponent<SimpleAnimations>().FadeOutView();
+            RightBorderIMG.GetComponent<SimpleAnimations>().FadeOutView();
+
+            LoadingText.gameObject.SetActive(false);
+            PercentageText.gameObject.SetActive(false); 
+            
+            yield return new WaitForSeconds(2.5f);
+            
             BlackOut.GetComponent<SimpleAnimations>().FadeOutScreen();
             Header.GetComponent<SimpleAnimations>().FadeOutView();
-            LoadingText.gameObject.SetActive(false);
-            PercentageText.gameObject.SetActive(false);
-            
-            yield return new WaitForSeconds(BlackOut.GetComponent<SimpleAnimations>().timeToDisappear);
 
-            BlackOut.transform.parent.transform.gameObject.SetActive(false);
+            yield return new WaitForSeconds(2.5f);
+
+            LoadingScreenParent.gameObject.SetActive(false);
         }
     }
 }

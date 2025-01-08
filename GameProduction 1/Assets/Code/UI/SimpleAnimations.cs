@@ -40,11 +40,11 @@ public class SimpleAnimations : MonoBehaviour
         // if Panel is currently hidden move to be none hidden
         if(isPanelOpen){
             Panel.DOAnchorPos(UnHiddenPos, TimeToMove);
-            Debug.Log("Opened");
+            //Debug.Log("Opened");
         }
         else{   
             Panel.DOAnchorPos(HiddenPos, TimeToMove);
-            Debug.Log("Closed");
+            //Debug.Log("Closed");
         }
         isToggleOn = isPanelOpen;
     }

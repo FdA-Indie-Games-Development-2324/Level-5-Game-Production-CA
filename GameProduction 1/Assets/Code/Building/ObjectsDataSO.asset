@@ -13,16 +13,10 @@ MonoBehaviour:
   m_Name: ObjectsDataSO
   m_EditorClassIdentifier: 
   objectDataBases:
-  - Name: House
-    ID: 0
+  - ID: 0
     Type: House
-    Prefab: {fileID: 9101308677674156497, guid: 655a517fb573c8d44afbd4f2602beb7f,
+    GridSize: {x: 7, y: 7}
+    GenerationAmount: 0
+    GenerationTime: 0
+    Prefab: {fileID: 6860487529758843922, guid: cf0b105c151f47d48a6f4d41ad2ce303,
       type: 3}
-  - Name: Tree
-    ID: 1
-    Type: Environment
-    Prefab: {fileID: 1247767785291130, guid: 0734397d1a4fd924f98424ecb4ca43b9, type: 3}
-  - Name: 
-    ID: 0
-    Type: 
-    Prefab: {fileID: 0}

@@ -107,7 +107,7 @@ public class GridSystem : MonoBehaviour
             // If the detected colliders is above 1 then the placement is invalid. 
             // I am passing 1 because the ground is a collider that will be detected
             if(cols.Length > 1){
-                Debug.LogWarning("Invalid Tree Placement");
+                //Debug.LogWarning("Invalid Tree Placement");
 
                 // Adding +1 onto the bush density will allow the script to try again at placing this tree but in a valid point
                 BushDensity += 1;
@@ -124,10 +124,10 @@ public class GridSystem : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        StaticBatchingUtility.Combine(TreeParent);
+        //StaticBatchingUtility.Combine(TreeParent);
 
         if(TreeCurrentPercent == 100){
-            Debug.Log("Tree generation completed");
+            //Debug.Log("Tree generation completed");
             CompletedTrees = true;
             objSpawned = 0;
 
@@ -168,7 +168,7 @@ public class GridSystem : MonoBehaviour
             // If the detected colliders is above 1 then the placement is invalid. 
             // I am passing 1 because the ground is a collider that will be detected
             if(cols.Length > 1){
-                Debug.LogWarning("Invalid Rock Placement");
+                //Debug.LogWarning("Invalid Rock Placement");
 
                 // Adding +1 onto the bush density will allow the script to try again at placing this tree but in a valid point
                 BushDensity += 1;
@@ -184,10 +184,10 @@ public class GridSystem : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        StaticBatchingUtility.Combine(RockParent);
+        //StaticBatchingUtility.Combine(RockParent);
 
         if(RockCurrentPercent == 100){
-            Debug.Log("Rock generation completed");
+            //Debug.Log("Rock generation completed");
             CompletedRocks = true;
             objSpawned = 0;
             RockCurrentPercent = 0;
@@ -210,7 +210,7 @@ public class GridSystem : MonoBehaviour
             Quaternion RandomY = Quaternion.Euler(0, Random.Range(0, 360), 0);
 
             // Random scale
-            float randScale = Random.Range(.9f, 1.3f);
+            float randScale = Random.Range(.3f, .7f);
             BushPrefabs[RandomGO].transform.localScale = new Vector3(randScale, randScale, randScale);
             
             // random grid pos from list
@@ -223,7 +223,7 @@ public class GridSystem : MonoBehaviour
             // If the detected colliders is above 1 then the placement is invalid. 
             // I am passing 1 because the ground is a collider that will be detected
             if(cols.Length > 1){
-                Debug.LogWarning("Invalid Bush Placement");
+                //Debug.LogWarning("Invalid Bush Placement");
 
                 // Adding +1 onto the bush density will allow the script to try again at placing this tree but in a valid point
                 BushDensity += 1;
@@ -242,10 +242,10 @@ public class GridSystem : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        StaticBatchingUtility.Combine(BushParent);
+        //StaticBatchingUtility.Combine(BushParent);
 
         if(BushesCurrentPercent == 100){
-            Debug.Log("Rock generation completed");
+            //Debug.Log("Rock generation completed");
             CompletedBush = true;
             objSpawned = 0;
             BushesCurrentPercent = 0;
@@ -280,7 +280,7 @@ public class GridSystem : MonoBehaviour
             // If the detected colliders is above 1 then the placement is invalid. 
             // I am passing 1 because the ground is a collider that will be detected
             if(cols.Length > 1){
-                Debug.LogWarning("Invalid Ruins Placement");
+                //Debug.LogWarning("Invalid Ruins Placement");
 
                 // Adding +1 onto the bush density will allow the script to try again at placing this tree but in a valid point
                 BushDensity += 1;
@@ -298,11 +298,11 @@ public class GridSystem : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        StaticBatchingUtility.Combine(RuinsParent);
+        //StaticBatchingUtility.Combine(RuinsParent);
 
 
         if(RuinsCurrentPercent == 100){
-            Debug.Log("Ruin generation completed");
+            //Debug.Log("Ruin generation completed");
             CompletedRuins = true;
             objSpawned = 0;
             RuinsCurrentPercent = 0;

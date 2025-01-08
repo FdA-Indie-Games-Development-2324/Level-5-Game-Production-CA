@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+using System;
 using UnityEngine;
 
     /// <summary>
@@ -18,8 +16,10 @@ public class PlacementSystem : MonoBehaviour
 {
     [Header("Visuals")]
     public GameObject mouseIndicator;
+    public Material PreviewMaterial;
 
     [Header("Selection and placement")]
+    public BuildingMenu HotbarScript;
     public ObjectsDataSO dataBase;
     public BuildingManager buildingManager;
     public InputManager inputManager;
@@ -29,6 +29,8 @@ public class PlacementSystem : MonoBehaviour
     Vector3 mousePos;
     Vector3 gridPos;
     Vector3 lastPosition;
+    GameObject TempPreview;
+    bool IsPlacing;
     Camera Cam;
     public LayerMask placementLayerMask;
 
@@ -45,6 +47,9 @@ public class PlacementSystem : MonoBehaviour
         // This is needed to allow players to use their current selection.
         StopPlacing();
 
+        HotbarScript.CanSwitch = false;
+        HotbarScript.CurrentActivePanel.GetComponent<SimpleAnimations>().PanelMoving(false);
+
         SelectedID = dataBase.objectDataBases.FindIndex(data => data.ID == ID);
 
         Debug.Log(SelectedID);
@@ -54,8 +59,27 @@ public class PlacementSystem : MonoBehaviour
             return;
         }
 
+        // This is my own written code in this section as I really did not want to follow the tut
+
+        // Need to make it so that there is a preview version of the prefab. Everything to do this
+        // is already provided in some form in this code already from prefab to display to mousePos
+        
+        // Also note for checking collisions. Not doing that. The prefabs once spawned will delete
+        // Everything within its space.
+
+        // As by the point of this function being called the player is moving the mouse around to
+        // place down the building somewhere soooo this is the prefect place to quickly spawn a temp
+        // version of the prefab and switch out all of its materials to look like a blueprint.
+
+        // I will be calling a seperate function to keep this section clean;
+
+        PrefabPlacementPreview(SelectedID);
+
+        // End of my version
+
+
         // COPY ALL OF THE WIERD INPUT MANAGER FOR THIS AS YOU CANT USE THE CODE WITHOUT SIMILAR
-        // MECHANICS
+        // MECHANICS - idk what this guy is talking about tbh
 
         Cursor.visible = false;
         EditingVisual.SetActive(true);
@@ -63,6 +87,40 @@ public class PlacementSystem : MonoBehaviour
 
         inputManager.OnClicked += SpawningANDPlacing;
         inputManager.OnExit += StopPlacing;
+    }
+
+    private void PrefabPlacementPreview(int ID)
+    {
+        //Debug.Log("Spawned the preview");
+
+        // First would be to change the scale of the mouse indicator
+        // The scale of the mouse indicator will be determind by the set size on the Scriptable object
+        mouseIndicator.GetComponentInChildren<Transform>().transform.localScale = new Vector3(
+                                                                                            dataBase.objectDataBases[ID].GridSize.x, 
+                                                                                            0.4f, 
+                                                                                            dataBase.objectDataBases[ID].GridSize.y);
+
+        mouseIndicator.GetComponentInChildren<Renderer>().material.SetFloat("_GridSize", dataBase.objectDataBases[ID].GridSize.x);
+                                                                                            
+        // Now time to spawn the asset
+        // As a little cheese I will add this prefab to be attached to the mouse indicator. I dont need to move it then
+        TempPreview = Instantiate(dataBase.objectDataBases[ID].Prefab);
+
+        // Allow the preview to move around via Update()
+        IsPlacing = true;
+
+        // Then also change all of the materials to the preview material
+        // This is the same as the tutorial ish
+        Renderer[] renderers = TempPreview.transform.GetComponentsInChildren<Renderer>();
+        foreach (Renderer item in renderers)
+        {
+            Material[] materials = item.materials;
+            for (int i = 0; i < materials.Length; i++)
+            {
+                materials[i] = PreviewMaterial;
+            }
+            item.materials = materials;
+        }
     }
 
     void SpawningANDPlacing(){
@@ -76,11 +134,11 @@ public class PlacementSystem : MonoBehaviour
         GameObject newObject = Instantiate(dataBase.objectDataBases[SelectedID].Prefab);
         newObject.transform.position = gridPos;
 
-        Debug.Log(dataBase.objectDataBases[SelectedID].Type);
+        //Debug.Log(dataBase.objectDataBases[SelectedID].Type);
 
         if(dataBase.objectDataBases[SelectedID].Type == "House"){
             buildingManager.PlacedBuildings.Add(newObject);
-            Debug.Log("is this working?");
+            //Debug.Log("is this working?");
         }
 
         if(dataBase.objectDataBases[SelectedID].Type == "Shop"){
@@ -94,6 +152,19 @@ public class PlacementSystem : MonoBehaviour
         SelectedID = -1;
         EditingVisual.SetActive(false);
         mouseIndicator.SetActive(false);
+
+        HotbarScript.CanSwitch = true;
+        if(HotbarScript.CurrentActivePanel.GetComponent<SimpleAnimations>() != null){
+            HotbarScript.CurrentActivePanel.GetComponent<SimpleAnimations>().PanelMoving(true);
+        }
+
+        // OWN CODE
+
+        // Considering that the player has just clicked to place the prefab it would probably be 
+        // best to destroy the preview version. 
+        Destroy(TempPreview);
+
+        // END OF MY CODE
         
         Cursor.visible = true;
     }
@@ -119,13 +190,21 @@ public class PlacementSystem : MonoBehaviour
                 //Debug.Log(gridPos);
             }
         }
+
+        // Start of own code
+
+        if(IsPlacing){
+            TempPreview.transform.position = gridPos;
+        }
+
+        // End of own code
         
         mouseIndicator.transform.position = gridPos;
 
         Vector3 RayPoint = new Vector3(inputManager.hit.point.x, 0, inputManager.hit.point.z);
         
-        //Debug.Log(inputManager.mousePos);
-        EditingVisual.GetComponent<Renderer>().material.SetVector("_MouseCur", RayPoint);
+        Debug.Log(inputManager.mousePos);
+        //EditingVisual.GetComponent<Renderer>().material.SetVector("_MouseCur", RayPoint);
 
     }
 }

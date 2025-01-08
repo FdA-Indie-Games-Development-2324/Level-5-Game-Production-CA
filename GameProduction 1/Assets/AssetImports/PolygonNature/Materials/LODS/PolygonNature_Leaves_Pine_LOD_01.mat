@@ -134,6 +134,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _IsBeingHovered: 0
     - _Metallic: 0
     - _Mode: 1
     - _OcclusionStrength: 1
@@ -155,4 +156,5 @@ Material:
     - _ColorTint: {r: 1, g: 1, b: 1, a: 0}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _HoverColour: {r: 64, g: 0, b: 49.07965, a: 1}
   m_BuildTextureStacks: []

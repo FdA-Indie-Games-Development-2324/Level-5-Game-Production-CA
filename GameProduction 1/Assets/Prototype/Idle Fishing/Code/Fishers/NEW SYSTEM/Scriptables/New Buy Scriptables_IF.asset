@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c0e452876de51c4783c74ed28da4610, type: 3}
+  m_Name: New Buy Scriptables_IF
+  m_EditorClassIdentifier: 
+  storeItem:
+  - StoreIndex: 0
+    itemType: pier
+    GOPrefab: {fileID: 7110624128693512230, guid: 92453f598f448b54cb02b4d1ee6172d6,
+      type: 3}
+    ItemCost: 1500
+  - StoreIndex: 1
+    itemType: pier
+    GOPrefab: {fileID: 7110624128693512230, guid: e61f9c61dd00e654ca62e7e00156da73,
+      type: 3}
+    ItemCost: 2250
+  - StoreIndex: 2
+    itemType: fisher
+    GOPrefab: {fileID: 6646903310385785277, guid: 1d97e5051cd408f4e81090cf3476cc7b,
+      type: 3}
+    ItemCost: 500
+  - StoreIndex: 3
+    itemType: fisher
+    GOPrefab: {fileID: 6646903310385785277, guid: c06af3a98eb9e8d4ca162aa1a9889ea1,
+      type: 3}
+    ItemCost: 1250
+  - StoreIndex: 4
+    itemType: fisher
+    GOPrefab: {fileID: 7632930772133990964, guid: 5b8cf860259676e4da21b1989c9389ae,
+      type: 3}
+    ItemCost: 3250

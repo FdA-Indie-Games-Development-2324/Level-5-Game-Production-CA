@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Grid
-  m_Shader: {fileID: -6465566751694194690, guid: 10c1a9312f2ae40409f93d27d4b09957,
+  m_Shader: {fileID: -6465566751694194690, guid: d70393b481ecc7948bf6520d4499a136,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -43,13 +43,17 @@ Material:
     m_Ints: []
     m_Floats:
     - _CellAmount: 100
-    - _CellWidth: 0.93
+    - _CellThickness: 0.96
+    - _CellWidth: 0.9
     - _CursorSpeed: 4
+    - _GridSize: 100
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _BackdropCol: {r: 0, g: 0, b: 0, a: 1}
-    - _ColorEm: {r: 0.5358867, g: 0.5358867, b: 0.5358867, a: 0}
+    - _BackdropAlpha: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
+    - _BackdropCol: {r: 0.15307933, g: 0.40074012, b: 0.75471693, a: 0.5019608}
+    - _Color: {r: 0, g: 0.62501, b: 1, a: 0.05490196}
+    - _ColorEm: {r: 0.745283, g: 0.22147557, b: 0.22147557, a: 1}
     - _MouseCur: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2642501321945167218

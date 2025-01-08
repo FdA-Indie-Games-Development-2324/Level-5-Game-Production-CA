@@ -6,7 +6,7 @@ public class MoneyManager : MonoBehaviour
     public float Money;
     public TMP_Text MoneyText;
 
-    void Update(){
+    public void Update(){
         MoneyText.text = "Money: " + Money.ToString();
     }
 
