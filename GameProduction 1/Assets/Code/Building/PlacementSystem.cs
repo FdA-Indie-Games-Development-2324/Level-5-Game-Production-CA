@@ -55,7 +55,7 @@ public class PlacementSystem : MonoBehaviour
 
         SelectedID = dataBase.objectDataBases.FindIndex(data => data.ID == ID);
 
-        Debug.Log(SelectedID);
+        //Debug.Log(SelectedID);
 
         if(SelectedID < 0){
             Debug.LogError($"No ID found {ID}");

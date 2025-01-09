@@ -1,4 +1,10 @@
-using System.Collections;
+// Essentially this script is useless 
+
+
+
+
+
+/* using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.EditorTools;
 using UnityEngine;
@@ -14,7 +20,7 @@ public class BuildingStatistics : MonoBehaviour
 
     [Header("Basic stats")]
     public int BuildingLevel;
-    private float XPGain;
+    public float XPGain;
 
     public float RequiredGold;
     public float RequiredResources;
@@ -23,6 +29,7 @@ public class BuildingStatistics : MonoBehaviour
     private float TimeToDestroy;
 
     [Header("If resource generator")]
+    [Tooltip("This is a requirement for the resource generators")]
     private float GenerationAmount;
     private float GenerationTime;
 
@@ -41,19 +48,27 @@ public class BuildingStatistics : MonoBehaviour
         // Needed to see if this building will generate resources or not
         CheckType();
 
+        // For the town hall
+        if(gameObject.name == "FortTier1"){
+            PlayerStaticsGO.TownHall = this.gameObject;
+            Debug.Log("Town hall has been set");
+        }
+
 
         // Find some things in the game scene
         CentrePoint = gameObject.transform.Find("CentrePoint").gameObject;
         PlayerStaticsGO = GameObject.Find("PlayerStats").GetComponent<PlayerStatistics>();
         
         // Delete everything around this object
-        ClearSpace();
+        //ClearSpace();
 
         // Since the building has just been placed it needs time to build
-        if(Time.time > TimeToBuild){
+        if(Time.time < TimeToBuild){
             Debug.Log("Structure completed");
 
             PlayerStaticsGO.CurrentXPAmount += XPGain;
+
+            PlayerStaticsGO.CheckLevel();
         }
     }
 
@@ -101,4 +116,4 @@ public class BuildingStatistics : MonoBehaviour
     void BuildingStage(){
         
     }
-}
+} */

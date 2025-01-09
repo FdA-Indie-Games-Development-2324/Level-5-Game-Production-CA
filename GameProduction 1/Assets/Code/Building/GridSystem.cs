@@ -95,7 +95,7 @@ public class GridSystem : MonoBehaviour
             Quaternion RandomY = Quaternion.Euler(0, Random.Range(0, 360), 0);
 
             // Random scale
-            float randScale = Random.Range(.9f, 1.3f);
+            float randScale = Random.Range(1.5f, 2.2f);
             TreePrefabs[RandomGO].transform.localScale = new Vector3(randScale, randScale, randScale);
             
             // random grid pos from list

@@ -15,14 +15,36 @@ MonoBehaviour:
   objectDataBases:
   - ID: 0
     Type: House
+    GridSize: {x: 11, y: 11}
+    Prefab: {fileID: 4853044094968865507, guid: 462d6f48a2e602a4fa087af2d083f1e9,
+      type: 3}
+    PreviewPrefab: {fileID: 4853044094968865507, guid: c34579c92e68a2648bc630c8c7097379,
+      type: 3}
+  - ID: 1
+    Type: House
     GridSize: {x: 7, y: 7}
-    BuildingLevel: 1
-    XPGain: 5
-    RequiredGold: 75
-    RequiredResources: 10
-    TimeToBuild: 5
-    TimeToDestroy: 5
-    GenerationAmount: 0
-    GenerationTime: 0
-    Prefab: {fileID: 6860487529758843922, guid: cf0b105c151f47d48a6f4d41ad2ce303,
+    Prefab: {fileID: 2098685797864168105, guid: 6f31cf4591aa43946b57e15e246f3cdc,
+      type: 3}
+    PreviewPrefab: {fileID: 2098685797864168105, guid: e80bd841ded169e47bb3aa79f96d7847,
+      type: 3}
+  - ID: 2
+    Type: House
+    GridSize: {x: 9, y: 9}
+    Prefab: {fileID: 3656272710609996735, guid: 25178ed203dd7a84381eb0f3b8ff91b1,
+      type: 3}
+    PreviewPrefab: {fileID: 3656272710609996735, guid: 3a4233949db07e44aa15adf5c2f77381,
+      type: 3}
+  - ID: 3
+    Type: Shop
+    GridSize: {x: 9, y: 9}
+    Prefab: {fileID: 8409167781626716856, guid: d70ffab8263a183439d6ac9b147a5af1,
+      type: 3}
+    PreviewPrefab: {fileID: 8409167781626716856, guid: 644dc20e20c628a4589293ac7535cc4d,
+      type: 3}
+  - ID: 4
+    Type: Shop
+    GridSize: {x: 9, y: 9}
+    Prefab: {fileID: 2034542917042441232, guid: 8c9d8104c98166444aea0c4766666c34,
+      type: 3}
+    PreviewPrefab: {fileID: 2034542917042441232, guid: f39165f78aacafc468d9d622b94a13a3,
       type: 3}

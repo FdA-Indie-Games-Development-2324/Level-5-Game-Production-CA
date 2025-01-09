@@ -292,6 +292,9 @@
         },
         {
             "m_Id": "fa14e622684b4551821af8bb0c755908"
+        },
+        {
+            "m_Id": "cb752cc68d4a44f29a5a00d08b1b2acf"
         }
     ],
     "m_StickyNoteDatas": [],
@@ -1388,7 +1391,7 @@
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "0650517f63104725b3dd6426f6172e61",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "cb752cc68d4a44f29a5a00d08b1b2acf"
     },
     "m_Name": "Property",
     "m_DrawState": {
@@ -2139,14 +2142,14 @@
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "1fe874ab4e7d43a8bddefb18c57878bc",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "cb752cc68d4a44f29a5a00d08b1b2acf"
     },
     "m_Name": "Property",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 116.99998474121094,
+            "x": 125.99998474121094,
             "y": 1036.0,
             "width": 148.99998474121095,
             "height": 34.0
@@ -4618,16 +4621,16 @@
     "m_Type": "UnityEditor.ShaderGraph.MultiplyNode",
     "m_ObjectId": "693207e829344f99ba8463010b9aff33",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "cb752cc68d4a44f29a5a00d08b1b2acf"
     },
     "m_Name": "Multiply",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 782.0,
+            "x": 646.0000610351563,
             "y": 1036.0,
-            "width": 208.00006103515626,
+            "width": 207.99993896484376,
             "height": 302.0
         }
     },
@@ -4777,9 +4780,9 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "r": 1.4980393648147584,
-        "g": 0.0,
-        "b": 1.1488007307052613,
+        "r": 2.000000238418579,
+        "g": 2.000000238418579,
+        "b": 2.000000238418579,
         "a": 1.0
     },
     "isMainColor": false,
@@ -6193,16 +6196,16 @@
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "95cf74b9aa5f4998ad58167ce03cd837",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "cb752cc68d4a44f29a5a00d08b1b2acf"
     },
     "m_Name": "Property",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 646.0,
-            "y": 878.0,
-            "width": 160.0,
+            "x": 689.0000610351563,
+            "y": 1002.0,
+            "width": 159.9998779296875,
             "height": 34.0
         }
     },
@@ -6636,15 +6639,15 @@
     "m_Type": "UnityEditor.ShaderGraph.BranchNode",
     "m_ObjectId": "a4d2ebe3f5354270a2bbb542b12305a6",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "cb752cc68d4a44f29a5a00d08b1b2acf"
     },
     "m_Name": "Branch",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 1086.0,
-            "y": 855.0,
+            "x": 1057.0,
+            "y": 1002.0,
             "width": 208.0,
             "height": 326.0
         }
@@ -7742,7 +7745,7 @@
     "m_Type": "UnityEditor.ShaderGraph.FresnelNode",
     "m_ObjectId": "c193523339f54155990eda1960a4c856",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "cb752cc68d4a44f29a5a00d08b1b2acf"
     },
     "m_Name": "Fresnel Effect",
     "m_DrawState": {
@@ -8083,6 +8086,17 @@
     "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.GroupData",
+    "m_ObjectId": "cb752cc68d4a44f29a5a00d08b1b2acf",
+    "m_Title": "My addition",
+    "m_Position": {
+        "x": 10.0,
+        "y": 10.0
     }
 }
 

@@ -42,9 +42,6 @@ public class ObjectSelection : MonoBehaviour
 
         Ray ray = Cam.ScreenPointToRay(mousePos);
 
-        /* if(inputManager.isPointerOverUI()){
-            return;
-        }  */
 
         if(EditMode && Physics.Raycast(ray, out hit, 100)){
             //Debug.Log(hit.transform.name);
@@ -179,12 +176,46 @@ public class ObjectSelection : MonoBehaviour
             //Debug.Log("This is a tree");
             ObjectName.text = "Large house";
         }
+
+        if(CurrentEditGO.tag == "WoodMill"){
+            //Debug.Log("This is a tree");
+            ObjectName.text = "Wood mill";
+        }
+    }
+
+    public void Upgrade(){
+        
     }
 
     public void RemoveObj(){
         if(CurrentEditGO.tag == "Tree"){
-            Debug.Log("This is a tree");
-            ObjectName.text = "Tree";
+            playerStatistics.Rescoure += 5;
+            playerStatistics.RefreshResource();
+        }
+
+        if(CurrentEditGO.tag == "Bush"){
+            playerStatistics.Rescoure += 1;
+            playerStatistics.RefreshResource();
+        }
+
+        if(CurrentEditGO.tag == "SmallHouse"){
+            playerStatistics.Rescoure += 20;
+            playerStatistics.RefreshResource();
+        }
+
+        if(CurrentEditGO.tag == "LargeHouse"){
+            playerStatistics.Rescoure += 30;
+            playerStatistics.RefreshResource();
+        }
+        
+        if(CurrentEditGO.tag == "BlackSmith"){
+            playerStatistics.Rescoure += 50;
+            playerStatistics.RefreshResource();
+        }
+
+        if(CurrentEditGO.tag == "WoodMill"){
+            playerStatistics.Rescoure += 50;
+            playerStatistics.RefreshResource();
         }
         ConfirmEdit();
     }

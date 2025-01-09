@@ -29,6 +29,8 @@ public class PlayerStatistics : MonoBehaviour
     [Header("Town Hall")]
     public GameObject TownHall;
 
+    public GameObject[] TownHallTiers;
+
 
     [Header("Audio")]
     public AudioSource AudioPlayer;
@@ -103,6 +105,8 @@ public class PlayerStatistics : MonoBehaviour
         LevelText.text = TownLvl.ToString();
 
         CurrentXPAmount = 0;
+
+        CheckToCheckIfNeedsChanging();
     }
 
     public void CheckLevel(){
@@ -112,5 +116,35 @@ public class PlayerStatistics : MonoBehaviour
             Debug.Log("now leveled up");
             LevelUp();
         }
+    }
+
+    public void CheckToCheckIfNeedsChanging(){
+        // Wooden
+        if(TownLvl == 5){
+            TownHallTiers[0].SetActive(false);
+            TownHallTiers[1].SetActive(true);
+
+            Gold += 50;
+            Rescoure += 50;
+        }
+        // Small castle
+        else if(TownLvl == 10){
+            TownHallTiers[1].SetActive(false);
+            TownHallTiers[2].SetActive(true);
+
+            Gold += 125;
+            Rescoure += 125;
+        }
+        // Large castle
+        else if(TownLvl == 20){
+            TownHallTiers[2].SetActive(false);
+            TownHallTiers[3].SetActive(true);
+
+            Gold += 500;
+            Rescoure += 500;
+        }
+
+        RefreshGold();
+        RefreshResource();
     }
 }

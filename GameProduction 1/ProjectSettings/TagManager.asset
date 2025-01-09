@@ -12,6 +12,8 @@ TagManager:
   - Bush
   - SmallHouse
   - LargeHouse
+  - BlackSmith
+  - WoodMill
   layers:
   - Default
   - TransparentFX

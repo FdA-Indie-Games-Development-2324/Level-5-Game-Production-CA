@@ -37,7 +37,7 @@ public class StoringMultipleVaribles : MonoBehaviour
         GameObject GOTest = Instantiate(dataBase.objectDataBases[index].Prefab, PlacedBuildingsParent);
 
         // This stops the first index from being -1
-        if(PlacedBuildings.Count == 0)
+        /* if(PlacedBuildings.Count == 0)
         {
             PlacedBuildings.Add(new StoredBuildings(0, dataBase.objectDataBases[index].Type, 
                                                         dataBase.objectDataBases[index].GenerationAmount,
@@ -49,7 +49,7 @@ public class StoringMultipleVaribles : MonoBehaviour
             PlacedBuildings.Add(new StoredBuildings(PlacedBuildings.Count, dataBase.objectDataBases[index].Type, 
                                                                             dataBase.objectDataBases[index].GenerationAmount,
                                                                             dataBase.objectDataBases[index].GenerationTime));
-        }
+        } */
 
     }
 }
